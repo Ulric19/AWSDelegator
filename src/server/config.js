@@ -49,3 +49,9 @@ awsRegions = ['us-west-1', 'us-west-2','us-east-1'];
 credits = '';
 creditExp = '';
 creditsUsed = '';
+
+// module.exports = function() {
+// 	this.credits = ''
+// 	this.creditExp = ''
+// 	this.creditsUsed = ''
+// };

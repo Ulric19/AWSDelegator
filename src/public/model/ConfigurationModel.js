@@ -90,7 +90,7 @@ var ConfigurationModel = Backbone.Model.extend({
 				self.set('expirationDataReady', Date.now());
 			},
 			error: function(data){
-				// console.log(data);
+				console.log("setExpiration Error:",data);
 			}
 		});
 	}

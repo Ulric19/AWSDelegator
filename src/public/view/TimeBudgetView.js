@@ -88,7 +88,7 @@ var TimeBudgetView = Backbone.View.extend({
             $('#time-filter-details').removeClass('hidden');
             if (selected == 'group') {
                 self.model.getGroups();
-            } else if( selected =='user') {
+            } else if (selected == 'user') {
                 self.model.getUsers();
             }
         }.bind(this));
@@ -116,7 +116,6 @@ var TimeBudgetView = Backbone.View.extend({
         }.bind(this));
 
         this.$el.on('focusin', '#time-startdate', function(e) {
-            var self = this;
             // console.log("FOCUS IN startDate", self.data);
             $("#time-startdate").datepicker({
                 onSelect: function(selected) {
@@ -137,7 +136,6 @@ var TimeBudgetView = Backbone.View.extend({
         }.bind(this));
 
         this.$el.on('focusin', '#time-enddate', function(e) {
-            var self = this;
             // console.log("FOCUS on endDate", self.data);
             $("#time-enddate").datepicker({
                 onSelect: function(selected) {
@@ -193,7 +191,7 @@ var TimeBudgetView = Backbone.View.extend({
         }.bind(this));
 
         this.$el.on('focusout', '#time-amount', function(e) {
-            if (/^\d+(\.\d{1,2})?$/.test($('#time-amount').val())&& ($('#time-amount').val()>0) ) {
+            if (/^\d+(\.\d{1,2})?$/.test($('#time-amount').val()) && ($('#time-amount').val() > 0)) {
                 this.data.timeamount = $('#time-amount').val();
                 self.isValid.timeamount = true;
                 self.$('#time-amountwarning').hide();
@@ -204,7 +202,7 @@ var TimeBudgetView = Backbone.View.extend({
         }.bind(this));
 
         this.$el.on('focusout', '#time-udecay', function(e) {
-            if (/\d/.test($('#time-udecay').val()) && ($('#time-udecay').val())>0) {
+            if (/\d/.test($('#time-udecay').val()) && ($('#time-udecay').val()) > 0) {
                 this.data.uDecay = parseInt($('#time-udecay').val());
                 self.isValid.uDecay = true;
                 self.$('#time-udecaywarning').hide();
@@ -215,7 +213,7 @@ var TimeBudgetView = Backbone.View.extend({
         }.bind(this));
 
         this.$el.on('focusout', '#time-odecay', function(e) {
-            if (/\d/.test($('#time-odecay').val()) && ($('#time-odecay').val())>0) {
+            if (/\d/.test($('#time-odecay').val()) && ($('#time-odecay').val()) > 0) {
                 this.data.oDecay = parseInt($('#time-odecay').val());
                 self.isValid.oDecay = true;
                 self.$('#time-odecaywarning').hide();
@@ -226,7 +224,7 @@ var TimeBudgetView = Backbone.View.extend({
         }.bind(this));
 
         this.$el.on('focusout', '#time-minDB', function(e) {
-            if (/\d/.test($('#time-minDB').val()) && ($('#time-minDB').val())>=0) {
+            if (/\d/.test($('#time-minDB').val()) && ($('#time-minDB').val()) >= 0) {
                 this.data.minDB = parseInt($('#time-minDB').val());
                 console.log(this.data.minDB, this.data.maxDB);
                 if (this.data.minDB == '') {
@@ -253,7 +251,7 @@ var TimeBudgetView = Backbone.View.extend({
         }.bind(this));
 
         this.$el.on('focusout', '#time-maxDB', function(e) {
-            if (/\d/.test($('#time-maxDB').val()) && ($('#time-maxDB').val())>=0) {
+            if (/\d/.test($('#time-maxDB').val()) && ($('#time-maxDB').val()) >= 0) {
                 this.data.maxDB = parseInt($('#time-maxDB').val());
                 console.log(this.data.minDB, this.data.maxDB);
                 if (this.data.maxDB < 1) {
@@ -342,34 +340,51 @@ var TimeBudgetView = Backbone.View.extend({
                             submitted = true;
                         }
                         $('#time-batchSelectionWarning').hide();
-                        $("#time-amount").val("");
-                        $("#time-budgetname").val("");
-                        $(".time-costfilter").val("");
-                        $(".time-sub-costfilter").val("");
-                        $("#time-startdate").val("");
-                        $("#time-enddate").val("");
-                        $("#time-udecay").val("");
-                        $("#time-odecay").val("");
-                        $("#minDB").val("");
-                        $("#maxDB").val("");
+                        $("#time-amount").prop('value', '');
+                        $("#time-budgetname").prop('value', '');
+                        $(".time-costfilter").prop('value', '');
+                        $(".time-sub-costfilter").prop('value', '');
+                        $("#time-startdate").prop('value', '');
+                        $("#time-enddate").prop('value', '');
+                        $("#time-udecay").prop('value', '');
+                        $("#time-odecay").prop('value', '');
+                        $("#time-minDB").prop('value', '');
+                        $("#time-maxDB").prop('value', '');
                         $(".time-sub-costfilter").hide();
                         $('#timeBudgetModal').modal('hide');
+                        this.$('#time-associationWarning').hide()
+                        this.$('#time-batchNameAndTypeWarning').hide();
+                        this.$('#time-batchSelectionWarning').hide();
+                        this.$('#time-minDBwarning').hide();
+                        this.$('#time-minDBrequest').hide();
+                        this.$('#time-maxDBwarning').hide();
+                        this.$('#time-maxDBrequest').hide();
+                        this.$('#time-odecaywarning').hide();
+                        this.$('#time-odecayrequest').hide();
+                        this.$('#time-udecaywarning').hide();
+                        this.$('#time-udecayrequest').hide();
+                        this.$('#time-budgetnamewarning').hide();
+                        this.$('#time-budgetnamerequest').hide();
+                        this.$('#time-oldbudgetnamewarning').hide();
+                        this.$('#time-enddatewarning').hide();
+                        this.$('#time-enddaterequest').hide();
+                        this.$('#time-startdaterequest').hide();
+                        this.$('#time-amountwarning').hide();
+                        this.$('#time-amountrequest').hide();
+                        this.$('#time-batchtyperequest').hide();
+                        this.$('#time-batchnamerequest').hide();
 
-                    }
-                    else if (err == 'error, TimeBudget for batchName already Exists'){
+                    } else if (err == 'error, TimeBudget for batchName already Exists') {
                         console.log("Please make a time budget for a user or group without one already");
                         this.$('#time-batchNameAndTypeWarning').show();
                         this.$('#time-associationWarning').hide()
                         this.$('#time-batchSelectionWarning').hide();
-                    }
-                    else if ( err == 'error: no associated resources'){
+                    } else if (err == 'error: no associated resources') {
                         console.log('It seems like the selected user or group does not an associated instance')
                         this.$('#time-associationWarning').show()
-                    }
-                    else if (err == 'error: empty response'){
+                    } else if (err == 'error: empty response') {
                         console.log('empty response');
-                    }
-                    else if (err == '') {
+                    } else if (err == '') {
                         // console.log('text is',err);
                         // console.log('time budget insert error');
                         this.$('#time-associationWarning').hide()
@@ -385,19 +400,40 @@ var TimeBudgetView = Backbone.View.extend({
                 self.isValid[i] = false;
                 self.data[i] = null;
             }
-            $("#time-amount").val("");
-            $("#time-budgetname").val("");
-            $(".time-costfilter").val("");
-            $(".time-sub-costfilter").val("");
+            $("#time-amount").prop('value', '');
+            $("#time-budgetname").prop('value', '');
+            $(".time-costfilter").prop('value', '');
+            $(".time-sub-costfilter").prop('value', '');
             $(".time-sub-costfilter").hide();
-            $("#time-startdate").val("");
-            $("#time-enddate").val("");
-            $("#time-udecay").val("");
-            $("#time-odecay").val("");
-            $("#minDB").val("");
-            $("#maxDB").val("");
+            $("#time-startdate").prop('value', '');
+            $("#time-enddate").prop('value', '');
+            $("#time-udecay").prop('value', '');
+            $("#time-odecay").prop('value', '');
+            $("#time-minDB").prop('value', '');
+            $("#time-maxDB").prop('value', '');
             $('#time-filter-details').addClass('hidden');
             $('#timeBudgetModal').modal('hide');
+            $('#time-associationWarning').hide()
+            $('#time-batchNameAndTypeWarning').hide();
+            $('#time-batchSelectionWarning').hide();
+            $('#time-minDBwarning').hide();
+            $('#time-minDBrequest').hide();
+            $('#time-maxDBwarning').hide();
+            $('#time-maxDBrequest').hide();
+            $('#time-odecaywarning').hide();
+            $('#time-odecayrequest').hide();
+            $('#time-udecaywarning').hide();
+            $('#time-udecayrequest').hide();
+            $('#time-budgetnamewarning').hide();
+            $('#time-budgetnamerequest').hide();
+            $('#time-oldbudgetnamewarning').hide();
+            $('#time-enddatewarning').hide();
+            $('#time-enddaterequest').hide();
+            $('#time-startdaterequest').hide();
+            $('#time-amountwarning').hide();
+            $('#time-amountrequest').hide();
+            $('#time-batchtyperequest').hide();
+            $('#time-batchnamerequest').hide();
         }.bind(this));
     },
 

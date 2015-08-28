@@ -7,7 +7,7 @@
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 class="modal-title"> AWS Account Settings <i class="fa fa-question-circle" id ="AccountSettings" data-toggle="tooltip" title="General Info regarding account settings"></i></h4>
 				<p>For best accuracy, please input credits and credits used information information soon after Amazon updates the invoice for your account. This is usually at the end of the first week of the month. Info found at <a href="https://console.aws.amazon.com/billing/home#/credits">AWS Console</a><p> 
-				<p>ONly Credit Expiration, Credits, and Credits Used can be modified here. Go to AWSDelegator/src/server/config.js to modify other settings</p>
+				<p>Only Credit Expiration, Credits, and Credits Used can be modified here. Go to /AWSDelegator/src/server/config.js to modify other settings</p>
 			</div>
 			<div class="modal-body">
 				{{#each pages}}
@@ -36,33 +36,39 @@
 						<div type="text" class="account" value="" disabled>{{this.URL}}</div>
 					</div>
 				</div>
+
+
+
 				<div class="insetting"> 
-					<div class="incontainer"><i class="fa fa-question-circle" id ="Expiration" data-toggle="tooltip" title="Expiration date of AWS credits. Value can be found by following the link at the top"></i>
-						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-							<input class="mdl-textfield__input" type="text" pattern="^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$" id='expDate'/>
-							<label class="mdl-textfield__label" for="expiration">Credit Expiration (YYYY/MM/DD)</label>
-							<span class="mdl-textfield__error">Input is not a date!</span>
-						</div>
-					</div>
-					<div class="incontainer"><i class="fa fa-question-circle" id ="CreditsRemaining" data-toggle="tooltip" title="Number of remaining AWS credits. Value can be found by following the link at the top"></i>
-						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-							<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="myCredits" />
-						    <label class="mdl-textfield__label" for="myCredits">Credits</label>
-						    <span class="mdl-textfield__error">Input is not a number!</span>
-						</div>
-					</div>
-					<div class="incontainer"><i class="fa fa-question-circle" id ="CreditsUsed" data-toggle="tooltip" title="Number of used AWS credits. Value can be found by following the link at the top"></i>
-						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
-							<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="creditsUsed" />
-						    <label class="mdl-textfield__label" for="creditsUsed">Credits Used</label>
-						    <span class="mdl-textfield__error">Input is not a number!</span>
-						</div>
+					<div class="incontainer">
+						<label class="budget-label">Expiration Date <i class="fa fa-question-circle" id ="Expiration" data-toggle="tooltip" title="Expiration date of AWS credits. Value can be found by following the link at the top"></i></label>
+						<input type="text" id="expDate" placeholder="mm/dd/yyyy" id='expDate'/>
+						<div class="warning" id="CreditExpWarning">Invalid dates selected.</div>
+						<div class="warning" id="CreditExpRequest">Please select an expiration date.</div>
 					</div>
 				</div>
+
+				<div class="insetting"> 
+					<div class="incontainer">
+						<label class="budget-label">Credits Remaining <i class="fa fa-question-circle" id ="Credits" data-toggle="tooltip" title="Number of credits remaining as reported by amazon"></i></label>
+						<input type="text" id="CreditsField" placeholder="200">
+						<div class="warning" id="CreditsWarning">Invalid decay rate.</div>
+						<div class="warning" id="CreditsRequest">Please enter a decay rate.</div>
+					</div>
+				</div>
+
+				<div class="insetting"> 
+					<div class="incontainer">
+						<label class="budget-label">Credits Used <i class="fa fa-question-circle" id ="CreditsUsed" data-toggle="tooltip" title="Number of credits used as reported by amazon"></i></label>
+						<input type="text" id="CreditsUsedField" placeholder="100">
+						<div class="warning" id="CreditsUsedWarning">Invalid decay rate.</div>
+						<div class="warning" id="CreditsUsedRequest">Please enter a decay rate.</div>
+					</div>
+				</div>
+
 				{{/each}}
 			</div>
 			<div class="modal-footer">
-				<p>To modify account settings, go to \AWSDelegator\src\server\config.js</p>
 				<button type="button" class="btn btn-default" data-dismiss="modal" id="saveConfig">Save</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal" id="closebtn">Close</button>
 			</div>
