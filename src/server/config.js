@@ -46,9 +46,10 @@ s3Region = 'us-east-1';
 //The Regions where your RDS and EC2 Instances are hosted
 awsRegions = ['us-west-1', 'us-west-2','us-east-1'];
 //Values can be found at https://console.aws.amazon.com/billing/home#/credits
-credits = '';
-creditExp = '';
-creditsUsed = '';
+credits = '2242.74';
+//Formatted MM/DD/YYYY
+creditExp = '12/31/2015';
+creditsUsed = '2257.26';
 
 // module.exports = function() {
 // 	this.credits = ''

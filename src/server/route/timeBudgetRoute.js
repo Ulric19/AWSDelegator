@@ -490,8 +490,8 @@ exports.createGRLSInstances = function(timeBudget, callback) {
 										serviceType: 'ec2',
 										instanceType: resourceData[0].Type,
 										lifetime: 0,
-										uDecay: timeBudget.uDecayRate,
-										oDecay: timeBudget.oDecayRate,
+										udecay: timeBudget.uDecayRate,
+										odecay: timeBudget.oDecayRate,
 										timeout: timeBudget.timeout,
 										state: 'valid'
 									};

@@ -19,12 +19,12 @@ var ConfigurationView = Backbone.View.extend({
         };
         this.bindings();
         this.render();
-        this.$('#CreditExpWarning').hide();
-        this.$('#CreditExpRequest').hide();
-        this.$('#CreditsUsedRequest').hide();
-        this.$('#CreditsUsedWarning').hide();
-        this.$('#CreditsWarning').hide();
-        this.$('#CreditsRequest').hide();
+        $('#CreditExpWarning').hide();
+        $('#CreditExpRequest').hide();
+        $('#creditsUsedRequest').hide();
+        $('#creditsUsedWarning').hide();
+        $('#CreditsWarning').hide();
+        $('#CreditsRequest').hide();
     },
 
     bindings: function() {
