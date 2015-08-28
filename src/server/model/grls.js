@@ -13,9 +13,9 @@ grlsInstanceSchema = new mongoose.Schema({
 	maxConnectionsLimit: Number,
 	lifetime: Number,
 	//under profile decay coefficient
-	udecay: Number,
+	uDecay: Number,
 	//over profile decay coefficient
-	odecay: Number,
+	oDecay: Number,
 	state: String
 });
 

@@ -51,8 +51,3 @@ credits = '2242.74';
 creditExp = '12/31/2015';
 creditsUsed = '2257.26';
 
-// module.exports = function() {
-// 	this.credits = ''
-// 	this.creditExp = ''
-// 	this.creditsUsed = ''
-// };

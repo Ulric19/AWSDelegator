@@ -1,4 +1,3 @@
-var config = require('../config.js');
 exports.setConfiguration = function(req, res) {
   req.on('data', function(chunk) {
     var value,
@@ -47,19 +46,18 @@ exports.setConfiguration = function(req, res) {
 }
 
 exports.setBalance = function(req, res) {
-    if (creditExp == '' || creditExp == undefined) {
+    if (creditExp == undefined) {
       credits = req.body["balance"];
     } else {
-      var expD = creditExp.substr(3, 2);
-      var expM = creditExp.substr(0, 2);
+      var expD = creditExp.substr(8, 2);
+      var expM = creditExp.substr(5, 2);
       expM = expM - 1;
-      var expY = creditExp.substr(6, 4);
+      var expY = creditExp.substr(0, 4);
       var exp = new Date(expY, expM, expD).toUTCString();
       var nowD = new Date().getDate();
       var nowM = new Date().getMonth();
       var nowY = new Date().getFullYear();
       var now = new Date(nowY, nowM, nowD).toUTCString();
-      console.log('(',now,', ',exp,')');
       if (nowY < expY || nowY <= expY && nowM < expM || nowY <= expY && nowM <= expM && nowD < expD) {
         credits = req.body["balance"];
         console.log("Credits Good!");
@@ -71,14 +69,16 @@ exports.setBalance = function(req, res) {
   }
 
 exports.setExpiration = function(req, res) {
-  console.log('req.body["expiration"]', req.body["expiration"]);
   creditExp = req.body["expiration"];
 }
 
 exports.setCreditsUsed = function(req) {
   creditsUsed = req.body["used"];
 }
-
+//
+exports.setUsed = function(req) {
+  creditsUsed = req;
+}
 exports.setCredits = function(req, res) {
   credits = req.body;
 }
