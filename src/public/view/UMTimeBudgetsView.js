@@ -474,6 +474,7 @@ var UMTimeBudgetsView = Backbone.View.extend({
         }.bind(this));
 
         this.$el.on('click', '#time-myonoffswitch', function(e) {
+            console.log($('#time-myonoffswitch').prop('checked'));
             this.data.timeout = $('#time-myonoffswitch').prop('checked');
             this.isValid.timeout = true
         }.bind(this));

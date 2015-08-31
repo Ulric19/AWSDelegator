@@ -209,7 +209,6 @@ app.post('/timebudget', jsonParser, function(req, res) {
             StartDate: startDate[2] + '-' + startDate[0] + '-' + startDate[1] + ' ' + '00:00:00',
             EndDate: endDate[2] + '-' + endDate[0] + '-' + endDate[1] + ' ' + '23:00:00',
             TimeAmount: r.timeamount,
-            TimeOut: r.timeout,
             uDecayRate: r.udecay,
             oDecayRate: r.odecay,
             minDB: r.minDB,
@@ -285,10 +284,22 @@ app.post('/removeTimeBudget', jsonParser, function(req, res) {
     });
 });
 
-/* POST to edit time budget in the database */
+/* POST 
+to edit time budget in the database */
 app.post('/editTimeBudget', jsonParser, function(req, res) {
     var r = req.body;
     MongoClient.connect(databaseUrl, function(err, db) {
+        db.collection('grlsInstances').update({
+            timeBudgetName: r.oldName
+        }, {
+            $set: {
+                timeBudgetName : r.budgetName,
+                udecay: r.uDecay,
+                odecay: r.oDecay,
+                timout: r.timeout,
+                state: 'valid'
+            }
+        });
         db.collection('timeBudgets').update({
             TimeBudgetName: r.oldName
         }, {
@@ -299,7 +310,7 @@ app.post('/editTimeBudget', jsonParser, function(req, res) {
                 StartDate: r.startDate,
                 EndDate: r.endDate,
                 TimeAmount: r.timeamount,
-                TimeOut: r.timeout,
+                timeout: r.timeout,
                 uDecayRate: r.uDecay,
                 oDecayRate: r.oDecay,
                 minDB: r.minDB,

@@ -4,6 +4,7 @@ var ConfigurationView = Backbone.View.extend({
     className: 'ConfigurationView',
 
     initialize: function(options) {
+
         if (!this.model) {
             this.model = new ConfigurationModel();
         }
@@ -18,35 +19,51 @@ var ConfigurationView = Backbone.View.extend({
             creditsUsed: null
         };
         this.bindings();
-        this.render();
-        $('#CreditExpWarning').hide();
-        $('#CreditExpRequest').hide();
-        $('#creditsUsedRequest').hide();
-        $('#creditsUsedWarning').hide();
-        $('#CreditsWarning').hide();
-        $('#CreditsRequest').hide();
+
     },
 
     bindings: function() {
+        this.render(function() {
+            console.log("Callback caled");
+            $('.warning').hide();
+            $('#CreditExpWarning').hide();
+            $('#CreditExpRequest').hide();
+            $('#CreditsUsedRequest').hide();
+            this.$('#CreditsUsedWarning').hide();
+            this.$('#CreditsWarning').hide();
+            this.$('#CreditsRequest').hide();
+            
+        });
         var self = this;
         this.model.change('openConfig', function(model, val) {
             this.render();
         }.bind(this));
 
         this.$el.on('click', '#saveConfig', function(e) {
-            if (this.data.expiration == null) {
-                $('#CreditExpRequest').show();
+            var validForm = true;
+            for (var i in self.isValid) {
+                if (!self.isValid[i]) {
+                    validForm = false;
+                    console.log("invalid", i);
+                }
             }
-            if (this.data.creditsUsed == null) {
-                $('#CreditsUsedRequest').show();
-            }
-            if (this.data.credits == null) {
-                $('#CreditsRequest').show();
-            }
-            if(this.data.creditsUsed != null && this.data.creditsUsed != null &&  this.data.expiration != null){
-                this.model.setExpiration(this.data.expiration);
-                this.model.setCreditsUsed(this.data.creditsUsed);
-                this.model.setBalance(this.data.credits);
+
+            if (validForm) {
+                console.log("form is valid");
+                if (this.data.expiration == null) {
+                    $('#CreditExpRequest').show();
+                }
+                if (this.data.creditsUsed == null) {
+                    $('#CreditsUsedRequest').show();
+                }
+                if (this.data.credits == null) {
+                    $('#CreditsRequest').show();
+                }
+                if (this.data.creditsUsed != null && this.data.creditsUsed != null && this.data.expiration != null) {
+                    this.model.setExpiration(this.data.expiration);
+                    this.model.setCreditsUsed(this.data.creditsUsed);
+                    this.model.setBalance(this.data.credits);
+                }
             }
         }.bind(this));
 
@@ -64,7 +81,6 @@ var ConfigurationView = Backbone.View.extend({
                     self.isValid.expiration = true;
                 }
             });
-
         }.bind(this));
 
         this.$el.on('focusout', '#CreditsField', function(e) {
@@ -109,14 +125,15 @@ var ConfigurationView = Backbone.View.extend({
         }.bind(this));
     },
 
-    render: function() {
+    render: function(callback) {
         var html = Handlebars.templates.ConfigurationView({
             pages: ConfigurationCollection.toJSON(),
             aws: JSON.stringify(ConfigurationCollection.pluck('aws'))
 
         });
         this.$el.html(html);
-
+        if(callback)
+        callback();
 
     }
 });
