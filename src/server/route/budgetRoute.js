@@ -296,7 +296,7 @@ exports.usage = function(req, res) {
 				}
 			}
 		}]).exec(function(e, d) {
-			console.log("GROU SHIT", d);
+			console.log("GROUP:", d);
 			res.send(d);
 		});
 	}
