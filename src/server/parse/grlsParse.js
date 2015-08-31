@@ -141,7 +141,7 @@ var updateLifetime = function(maxBudgetLifetimes) {
 							var group = grlsInstances[index2].group;
 							AWS.config.region = instanceRegion.substring(0, instanceRegion.length - 1);
 							var cloudwatch = new AWS.CloudWatch();
-
+							console.log('uDecayRate',uDecayRate,'oDecayRate',oDecayRate);
 							switch (serviceType) {
 								case 'ec2':
 									//if t2 instance then use CPUCreditBalance for profiling-
@@ -190,6 +190,7 @@ var updateLifetime = function(maxBudgetLifetimes) {
 													budgetLifetimes[timeBudgetName] = 0;
 												}
 												budgetLifetimes[timeBudgetName] += lifetime + decayRate;
+												console.log('lifetime:',lifetime,'decayRate',decayRate);
 												mongoose.model('grlsInstances').update({
 													timeBudgetName: timeBudgetName,
 													instanceId: instanceId
