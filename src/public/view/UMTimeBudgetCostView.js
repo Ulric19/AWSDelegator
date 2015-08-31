@@ -23,9 +23,12 @@ var UMTimeBudgetCostView = Backbone.View.extend({
             this.render();
             var date = budgetCostCollection.at(budgetCostCollection.length-1).get('date').split(' ');
             //date1=[year,month,date]
+            
             var date1 = date[0].split(/-/);
-            //date2=[hour,minute,second]                
-            var date2 = date[1].split(':');
+            
+            //date2=[hour,minute,second] 
+             
+            var date2 = date[1].split(":");
             //correction for JS viewing JAN as '00'
             var month = parseInt(date1[1]);
             date1[1] = month - 1;
@@ -34,8 +37,11 @@ var UMTimeBudgetCostView = Backbone.View.extend({
             //date format- ISOString i.e., '2015-07-22T17:26:16.799Z' 
             var date = budgetCostCollection.at(0).get('date').split('T');
             //date1=[year,month,date]
+            console.log("date",date);
             var date1 = date[0].split(/-/);
-            //date2=[hour,minute,second]                
+            console.log('date1',date1);
+            //date2=[hour,minute,second]
+            console.log('date[1]',date[1]);
             var date2 = date[1].split(':');
             date2[2] = date2[2].substring(0,date2[2].indexOf('.'));
             //correction for JS viewing JAN as '00'

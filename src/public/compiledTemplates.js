@@ -106,7 +106,7 @@ templates['EC2InstancesView'] = template({"1":function(depth0,helpers,partials,d
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return "<table id=\"EC2InstanceTable\" class=\"hover\">\r\n	<thead>\r\n		<tr class=\"dark-row\">\r\n			<th>User Name</th>\r\n			<th>Group Name</th>\r\n			<th>Instance ID</th>\r\n			<th>Type</th>\r\n			<th>State</th>\r\n			<th>Zone</th>\r\n			<th>Lifetime</th>\r\n			<th>Launched</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody id=\"instanceData\">\r\n"
+  return "<div class=\"title\"><h4> EC2 Instances </h4></div>\r\n<table id=\"EC2InstanceTable\" class=\"hover\">\r\n	<thead>\r\n		<tr class=\"dark-row\">\r\n			<th>User Name</th>\r\n			<th>Group Name</th>\r\n			<th>Instance ID</th>\r\n			<th>Type</th>\r\n			<th>State</th>\r\n			<th>Zone</th>\r\n			<th>Lifetime</th>\r\n			<th>Launched</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody id=\"instanceData\">\r\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.instances : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "	</tbody>	\r\n</table>\r\n\r\n\r\n\r\n";
 },"useData":true});
@@ -193,7 +193,7 @@ templates['IAMGroupsView'] = template({"1":function(depth0,helpers,partials,data
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return "<table id=\"GroupsTable\" class=\"display\">\r\n	<thead>\r\n		<tr class=\"dark-row\">\r\n			<th>GroupName</th>\r\n			<th>CreateDate</th>\r\n			<th>CostBudgetName/s</th>\r\n			<th>TimeBudgetName/s</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody id=\"instanceData\">\r\n"
+  return "<div class=\"title\"><h4>IAM Groups</h4></div>\r\n<table id=\"GroupsTable\" class=\"display\">\r\n	<thead>\r\n		<tr class=\"dark-row\">\r\n			<th>GroupName</th>\r\n			<th>CreateDate</th>\r\n			<th>CostBudgetName/s</th>\r\n			<th>TimeBudgetName/s</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody id=\"instanceData\">\r\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.instances : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "	</tbody>	\r\n</table>\r\n";
 },"useData":true});
@@ -212,7 +212,7 @@ templates['IAMUsersView'] = template({"1":function(depth0,helpers,partials,data)
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return "<table id=\"UsersTable\" class=\"display\">\r\n	<thead>\r\n		<tr class=\"dark-row\">\r\n			<th>UserName</th>\r\n			<th>CreateDate</th>\r\n			<th>CostBudgetName/s</th>\r\n			<th>TimeBudgetName/s</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody id=\"instanceData\">\r\n"
+  return "<div class=\"title\"><h4>IAM Users</h4></div>\r\n\r\n<table id=\"UsersTable\" class=\"display\">\r\n	<thead>\r\n		<tr class=\"dark-row\">\r\n			<th>UserName</th>\r\n			<th>CreateDate</th>\r\n			<th>CostBudgetName/s</th>\r\n			<th>TimeBudgetName/s</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody id=\"instanceData\">\r\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.instances : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "	</tbody>	\r\n</table>";
 },"useData":true});
@@ -373,7 +373,7 @@ templates['RDSInstancesView'] = template({"1":function(depth0,helpers,partials,d
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return "<table id=\"RDSInstanceTable\" class=\"hover\">\r\n	<thead>\r\n		<tr class=\"dark-row\">\r\n			<th>Identifier</th>\r\n			<th>Class</th>\r\n			<th>Engine</th>\r\n			<th>Status</th>\r\n			<th>MasterUsername</th>\r\n			<th>DBName</th>\r\n			<th>AllocatedStorage</th>\r\n			<th>Launch Time</th>\r\n			<th>Zone</th>\r\n			<th>StorageType</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody id=\"instanceData\">\r\n"
+  return "<div class=\"title\"><h4>RDS Instances </h4></div>\r\n<table id=\"RDSInstanceTable\" class=\"hover\">\r\n	<thead>\r\n		<tr class=\"dark-row\">\r\n			<th>Identifier</th>\r\n			<th>Class</th>\r\n			<th>Engine</th>\r\n			<th>Status</th>\r\n			<th>MasterUsername</th>\r\n			<th>DBName</th>\r\n			<th>AllocatedStorage</th>\r\n			<th>Launch Time</th>\r\n			<th>Zone</th>\r\n			<th>StorageType</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody id=\"instanceData\">\r\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.instances : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "	</tbody>	\r\n</table>\r\n";
 },"useData":true});
@@ -423,7 +423,7 @@ templates['UMCostBudgetsView'] = template({"1":function(depth0,helpers,partials,
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return "<table id=\"BudgetTable\" class=\"hover\">\r\n	<thead>\r\n		<tr class=\"dark-row\">\r\n			<th>BudgetName</th>\r\n			<th>BatchType</th>\r\n			<th>BatchName</th>\r\n			<th>StartDate</th>\r\n			<th>EndDate</th>\r\n			<th>Amount</th>\r\n			<th>Timeout</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody id=\"budgetData\">\r\n"
+  return "<div class=\"title\"><h4>Quota Cost Budgets</h4></div>\r\n<table id=\"BudgetTable\" class=\"hover\">\r\n	<thead>\r\n		<tr class=\"dark-row\">\r\n			<th>BudgetName</th>\r\n			<th>BatchType</th>\r\n			<th>BatchName</th>\r\n			<th>StartDate</th>\r\n			<th>EndDate</th>\r\n			<th>Amount</th>\r\n			<th>Timeout</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody id=\"budgetData\">\r\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.budgets : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "	</tbody>	\r\n</table>\r\n";
 },"useData":true});
@@ -465,7 +465,7 @@ templates['UMTimeBudgetsView'] = template({"1":function(depth0,helpers,partials,
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return "\r\n<table id=\"TimeBudgetTable\" class=\"hover\">\r\n	<thead>\r\n		<tr class=\"dark-row\">\r\n			<th>BudgetName</th>\r\n			<th>BatchType</th>\r\n			<th>BatchName</th>\r\n			<th>StartDate</th>\r\n			<th>EndDate</th>\r\n			<th>Time Amount</th>\r\n			<th>uDecay</th>\r\n			<th>oDecay</th>\r\n			<th>minDB</th>\r\n			<th>maxDB</th>\r\n			<th>TimeOut</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody id=\"timeBudgetData\">\r\n"
+  return "<div class=\"title\"><h4> Graduated Resource Limitation System (GRLS) Budgets </h4></div>\r\n<table id=\"TimeBudgetTable\" class=\"hover\">\r\n	<thead>\r\n		<tr class=\"dark-row\">\r\n			<th>BudgetName</th>\r\n			<th>BatchType</th>\r\n			<th>BatchName</th>\r\n			<th>StartDate</th>\r\n			<th>EndDate</th>\r\n			<th>Time Amount</th>\r\n			<th>uDecay</th>\r\n			<th>oDecay</th>\r\n			<th>minDB</th>\r\n			<th>maxDB</th>\r\n			<th>TimeOut</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody id=\"timeBudgetData\">\r\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.timebudgets : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "	</tbody>	\r\n</table>\r\n\r\n<ul class='custom-menu'>\r\n  <li data-action=\"Edit\"data-toggle=\"modal\" data-target=\"#base-modal\" data-backdrop=\"static\" data-keyboard=\"false\">Edit Instance</li>\r\n  <li data-action=\"Delete\" data-toggle=\"modal\" data-target=\"#base-modal\" data-backdrop=\"static\" data-keyboard=\"false\" >Delete Instance</li>\r\n</ul>\r\n\r\n";
 },"useData":true});
@@ -495,7 +495,7 @@ templates['UsageMonitorView'] = template({"1":function(depth0,helpers,partials,d
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return "<table id=\"BudgetTable\" class=\"display\">\r\n	<thead>\r\n		<tr class=\"dark-row\">\r\n			<th>BudgetName</th>\r\n			<th>BatchType</th>\r\n			<th>BatchName</th>\r\n			<th>StartDate</th>\r\n			<th>EndDate</th>\r\n			<th>Amount</th>\r\n			<th>Timeout</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody id=\"budgetData\">\r\n"
+  return "<div class=\"title\"><h4>Quota System Budgets</h4></div>\r\n<table id=\"BudgetTable\" class=\"display\">\r\n	<thead>\r\n		<tr class=\"dark-row\">\r\n			<th>BudgetName</th>\r\n			<th>BatchType</th>\r\n			<th>BatchName</th>\r\n			<th>StartDate</th>\r\n			<th>EndDate</th>\r\n			<th>Amount</th>\r\n			<th>Timeout</th>\r\n		</tr>\r\n	</thead>\r\n	<tbody id=\"budgetData\">\r\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.budgets : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "	</tbody>	\r\n</table>\r\n\r\n\r\n<ul class='custom-menu'>\r\n  <li data-action=\"Edit\"data-toggle=\"modal\" data-target=\"#base-modal\" data-backdrop=\"static\" data-keyboard=\"false\">Edit Instance</li>\r\n  <li data-action=\"Delete\" data-toggle=\"modal\" data-target=\"#base-modal\" data-backdrop=\"static\" data-keyboard=\"false\" >Delete Instance</li>\r\n</ul>\r\n\r\n";
 },"useData":true});

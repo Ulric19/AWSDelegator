@@ -192,7 +192,32 @@ app.post('/budget', jsonParser, function(req, res) {
         // });
     });
 });
-
+/* POST to edit cost budgets in the database */
+app.post('/editCostBudget', jsonParser, function(req, res) {
+    var r = req.body;
+    var startDate = r.startDate.split('/');
+    var endDate = r.endDate.split('/');
+    startDate[2] = startDate[2].substr(0,2);
+    endDate[2] = endDate[2].substr(0,2); 
+    console.log("editing Cost Budget", r);
+    MongoClient.connect(databaseUrl, function(err, db) {
+        db.collection('budgets').update({
+            BudgetName: r.oldName
+        }, {
+            $set: {
+                BudgetName: r.budgetName,
+                BatchType: r.batchType,
+                BatchName: r.batchName,
+                StartDate: startDate[2] + '-' + startDate[0] + '-' + startDate[1] + ' ' + '00:00:00',
+                EndDate: endDate[2] + '-' + endDate[0] + '-' + endDate[1] + ' ' + '23:00:00',
+                Amount: r.amount,
+                timeout: r.timeout,
+                State: 'valid'
+            }
+        });
+        res.send("success");
+    });
+});
 /* POST time budgets to the database */
 app.post('/timebudget', jsonParser, function(req, res) {
     var r = req.body;
@@ -234,60 +259,14 @@ app.post('/timebudget', jsonParser, function(req, res) {
     });
 });
 
-/* POST to remove cost budgets from the database */
-app.post('/removeCostBudget', jsonParser, function(req, res) {
-    var r = req.body;
-    MongoClient.connect(databaseUrl, function(err, db) {
-        if (err) throw err;
-        db.collection('budgets').remove({
-            BudgetName: r.budgetName
-        });
-        res.send("success");
-    });
-});
-
-/* POST to edit cost budgets in the database */
-app.post('/editCostBudget', jsonParser, function(req, res) {
-    var r = req.body;
-    console.log("editing Cost Budget", r);
-    MongoClient.connect(databaseUrl, function(err, db) {
-        db.collection('budgets').update({
-            BudgetName: r.oldName
-        }, {
-            $set: {
-                BudgetName: r.budgetName,
-                BatchType: r.batchType,
-                BatchName: r.batchName,
-                StartDate: r.startDate,
-                EndDate: r.endDate,
-                Amount: r.amount,
-                timeout: r.timeout,
-                State: 'valid'
-            }
-        });
-        res.send("success");
-    });
-});
-
-/* POST to remove time budgets from the database */
-app.post('/removeTimeBudget', jsonParser, function(req, res) {
-    var r = req.body;
-    MongoClient.connect(databaseUrl, function(err, db) {
-        if (err) throw err;
-        db.collection('timeBudgets').remove({
-            TimeBudgetName: r.budgetName
-        });
-        db.collection('grlsInstances').remove({
-            timeBudgetName: r.budgetName
-        });
-        res.send("success");
-    });
-});
-
 /* POST 
 to edit time budget in the database */
 app.post('/editTimeBudget', jsonParser, function(req, res) {
     var r = req.body;
+    var startDate = r.startDate.split('/');
+    var endDate = r.endDate.split('/');
+    startDate[2] = startDate[2].substr(0,2);
+    endDate[2] = endDate[2].substr(0,2); 
     MongoClient.connect(databaseUrl, function(err, db) {
         db.collection('grlsInstances').update({
             timeBudgetName: r.oldName
@@ -307,8 +286,8 @@ app.post('/editTimeBudget', jsonParser, function(req, res) {
                 TimeBudgetName: r.budgetName,
                 BatchType: r.batchType,
                 BatchName: r.batchName,
-                StartDate: r.startDate,
-                EndDate: r.endDate,
+                StartDate: startDate[2] + '-' + startDate[0] + '-' + startDate[1] + ' ' + '00:00:00',
+                EndDate: endDate[2] + '-' + endDate[0] + '-' + endDate[1] + ' ' + '23:00:00',
                 TimeAmount: r.timeamount,
                 timeout: r.timeout,
                 uDecayRate: r.uDecay,
@@ -321,6 +300,36 @@ app.post('/editTimeBudget', jsonParser, function(req, res) {
         res.send("success");
     });
 });
+
+/* POST to remove cost budgets from the database */
+app.post('/removeCostBudget', jsonParser, function(req, res) {
+    var r = req.body;
+    MongoClient.connect(databaseUrl, function(err, db) {
+        if (err) throw err;
+        db.collection('budgets').remove({
+            BudgetName: r.budgetName
+        });
+        res.send("success");
+    });
+});
+
+
+
+/* POST to remove time budgets from the database */
+app.post('/removeTimeBudget', jsonParser, function(req, res) {
+    var r = req.body;
+    MongoClient.connect(databaseUrl, function(err, db) {
+        if (err) throw err;
+        db.collection('timeBudgets').remove({
+            TimeBudgetName: r.budgetName
+        });
+        db.collection('grlsInstances').remove({
+            timeBudgetName: r.budgetName
+        });
+        res.send("success");
+    });
+});
+
 
 app.listen(port);
 
