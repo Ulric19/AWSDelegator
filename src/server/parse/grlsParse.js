@@ -137,7 +137,6 @@ var updateLifetime = function(maxBudgetLifetimes) {
 							var uDecayRate = grlsInstances[index2].udecay;
 							var oDecayRate = grlsInstances[index2].odecay;
 							var lifetime = grlsInstances[index2].lifetime;
-							// console.log('udecay',uDecayRate);
 							var user = grlsInstances[index2].user;
 							var group = grlsInstances[index2].group;
 							AWS.config.region = instanceRegion.substring(0, instanceRegion.length - 1);
@@ -171,17 +170,17 @@ var updateLifetime = function(maxBudgetLifetimes) {
 												//do nothing
 												console.log("do nothing");
 											} else {
-												// console.log("Error this way?");
+												console.log("Error this way?");
 												if (err) throw err;
 												var decayRate = 1;
 												var slope = cloudwatchData.Datapoints[1].Average - cloudwatchData.Datapoints[0].Average;
 												var maxCredits = t2HourlyEarning[instanceType] * 24;
 												if (slope < 1) {
 													if ((maxCredits - cloudwatchData.Datapoints[1].Average) < 0.1) {
-														// console.log("under-profile");
+														console.log("under-profile");
 														decayRate = uDecayRate;
 													} else if (cloudwatchData.Datapoints[1].Average < (0.02 * maxCredits)) {
-														// console.log('over-profile');
+														console.log('over-profile');
 														decayRate = oDecayRate;
 													}
 												} else if ((t2HourlyEarning[instanceType] - slope) < 0.1) {

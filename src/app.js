@@ -296,7 +296,7 @@ app.post('/editTimeBudget', jsonParser, function(req, res) {
                 timeBudgetName : r.budgetName,
                 udecay: r.uDecay,
                 odecay: r.oDecay,
-                timout: r.timeout,
+                timeout: r.timeout,
                 state: 'valid'
             }
         });
